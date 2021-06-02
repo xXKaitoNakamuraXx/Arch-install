@@ -1,0 +1,145 @@
+#################################################
+#	get internet connection			#
+#################################################
+$ ip link
+
+$ iwctl
+
+$ device list
+
+$ station [wireless device name] scan
+
+$ station [wireless device name] get-networks
+
+$ station [wireless device name] connect "ssid"
+
+#################################################
+#						#
+#		set timedate			#
+#						#
+#################################################
+
+$ timedatectl set-ntp true
+
+#################################################
+#												#
+#				set partitions					#
+#												#
+#################################################
+#												#
+#					uefi-systems				#
+#												#
+#################################################
+
+$ fdisk -l
+
+$ fdisk /dev/sda
+
+$ p
+
+$ g
+
+$ n  # \r\r +500M 
+
+$ n  # \r\r +2g
+
+$ n  # 2 or \r\r\r
+
+$ t  # 1 efi               1
+
+$ t  # 2 swap              19
+
+$ t  # 3 linux filesystem  20
+
+$ p
+
+$ w
+	# now out of fdisk
+$ mkfs.fat -F32 /dev/sda1          # efi
+
+$ mkswap /dev/sda2                 # swap
+
+$ swapon /dev/sda2
+
+$ mkfs.ext4 /dev/sda3              # main 
+
+$ mount /dev/sda3 /mnt
+
+	# internet required from now on
+
+$ pacstrap /mnt base linux linux-firmware linux-headers
+
+$ genfstab -U -p /mnt >> /mnt/etc/fstab
+
+$ arch-chroot /mnt
+
+	# now logged in as root on system
+
+$ ln -sf /usr/share/zoneinfo/REGION/CITY /etc/localtime
+
+$ hwclock --systohc
+
+$ pacman -S nano sudo vim neovim vi grub efibootmgr dosfstools os-prober xorg git wget base-devel openssh networkmanager wpa_supplicant wireless_tools netctl dialog lvm2 net-tools
+
+$ nano /etc/locale.gen
+	# uncomment en_us.utf-8 utf-8
+
+$ locale-gen
+
+$ nano /etc/hostname
+	# name of machine
+
+$ nano /etc/hosts
+	# 127.0.0.1		localhost
+	# ::1			localhost
+	# 127.0.1.1		HNAME.localdomain	HNAME
+
+$ passwd
+
+$ useradd -m UNAME
+
+$ passwd UNAME
+
+$ usermod -aG wheel,audio,video,optical,storage 
+UNAME
+
+$ EDITOR=nano visudo
+	# uncomment wheel ALL=(ALL)All
+
+$ mkdir /boot/EFI
+
+$ mount /dev/sda1 /boot/EFI
+
+$ grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+
+$ grub-mkconfig -o /boot/grub/grub.cfg
+
+$ systemctl enable NetworkManager
+
+$ exit
+
+$ umount -l /mnt
+
+$ "reboot" or "shutdown now"
+
+	# when booted back up
+
+$ sudo git clone https://aur.archlinux.org/yay.git
+
+$ sudo chown -R UNAME:users yay
+
+$ cd yay
+
+$ makepkg -si
+
+$ sudo pacman -S alacritty awesome firefox vlc picom dmenu gparted alsa lightdm lightdm-gtk-greeter nitrogen neofetch
+
+$ sudo yay -S polybar lightdm-slick-greeter tty-clock cbonsai
+
+$ nano /etc/lightdm/lightdm.conf
+	# change greeter-session
+
+$ nano /etc/xdg/awesome/rc.lua
+	# change terminal to TERMINAL
+
+$ systemctl enable lightdm lighdm.service
