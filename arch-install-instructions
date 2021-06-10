@@ -79,7 +79,7 @@ $ ln -sf /usr/share/zoneinfo/REGION/CITY /etc/localtime
 
 $ hwclock --systohc
 
-$ pacman -S nano sudo vim neovim vi grub efibootmgr dosfstools os-prober xorg git wget base-devel openssh networkmanager wpa_supplicant wireless_tools netctl dialog lvm2 net-tools
+$ pacman -S nano sudo vim neovim vi grub efibootmgr dosfstools os-prober xorg git wget base-devel openssh networkmanager wpa_supplicant wireless_tools netctl dialog net-tools
 
 $ nano /etc/locale.gen
 	# uncomment en_us.utf-8 utf-8
@@ -132,14 +132,18 @@ $ cd yay
 
 $ makepkg -si
 
-$ sudo pacman -S alacritty awesome firefox vlc picom dmenu gparted alsa lightdm lightdm-gtk-greeter nitrogen neofetch
+$ sudo pacman -S alacritty awesome firefox vlc picom dmenu gparted alsa lightdm lightdm-gtk-greeter nitrogen neofetch awesome-terminal-fonts network-manager-applet ttf-font-awesome gucharmap polybar feh gedit pulseaudio ranger python3-pip ttf-hanazono otf-ipafont zathura
 
-$ sudo yay -S polybar lightdm-slick-greeter tty-clock cbonsai
+$ sudo pip3 install pywal
+
+$ sudo yay -S polybar lightdm-slick-greeter tty-clock cbonsai ttf-mplus nerd-fonts-complete ddgr
+
+$ systemctl enable lightdm lighdm.service
+$ nano /etc/nanorc
+	# uncomment line 237
 
 $ nano /etc/lightdm/lightdm.conf
 	# change greeter-session
 
 $ nano /etc/xdg/awesome/rc.lua
 	# change terminal to TERMINAL
-
-$ systemctl enable lightdm lighdm.service
