@@ -22,13 +22,13 @@ $ station [wireless device name] connect "ssid"
 $ timedatectl set-ntp true
 
 #################################################
-#												#
-#				set partitions					#
-#												#
+#						#
+#		set partitions			#
+#						#
 #################################################
-#												#
-#					uefi-systems				#
-#												#
+#						#
+#		uefi-systems			#
+#						#
 #################################################
 
 $ fdisk -l
@@ -146,9 +146,9 @@ $ nano /etc/lightdm/lightdm.conf
 	# change greeter-session
 
 #########################
-#						#
-#		rc.lua 			#
-#						#
+#			#
+#	rc.lua 		#
+#			#
 #########################
 $ nano /etc/xdg/awesome/rc.lua
 	# change terminal to TERMINAL
@@ -179,7 +179,7 @@ $ nano /etc/xdg/awesome/rc.lua
 		end
 
 #####################
-#	picom.conf 		#
+#	picom.conf  #
 #####################
 # line 155 opacity-rule
 "85:class_g = 'Alacritty'",
@@ -196,7 +196,7 @@ radius 8.0
 fixed center true
 
 #####################
-#		launch.sh 	#
+#	launch.sh   #
 #####################
 
 
@@ -215,7 +215,7 @@ echo "Polybar Launched..."
 
 
 #########################
-#	install.sh test 	#
+#	install.sh test #
 #########################
 #!/bin/bash
 
