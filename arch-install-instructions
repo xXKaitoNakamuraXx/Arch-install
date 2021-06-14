@@ -132,7 +132,7 @@ $ cd yay
 
 $ makepkg -si
 
-$ sudo pacman -S alacritty awesome firefox vlc picom dmenu gparted alsa lightdm lightdm-gtk-greeter nitrogen neofetch awesome-terminal-fonts network-manager-applet ttf-font-awesome gucharmap polybar feh gedit pulseaudio ranger python ttf-hanazono otf-ipafont zathura
+$ sudo pacman -S alacritty awesome firefox vlc picom dmenu gparted alsa lightdm lightdm-gtk-greeter nitrogen neofetch awesome-terminal-fonts network-manager-applet ttf-font-awesome gucharmap feh gedit pulseaudio ranger python3-pip ttf-hanazono otf-ipafont zathura
 
 $ sudo pip3 install pywal
 
